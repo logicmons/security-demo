@@ -3,6 +3,7 @@ package com.example.securitydemo.service;
 import com.example.securitydemo.dao.UserMapper;
 import com.example.securitydemo.domain.Permission;
 import com.example.securitydemo.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
+    @Autowired
     private UserMapper userMapper;
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -31,6 +33,6 @@ public class UserService implements UserDetailsService {
 
         //设置用户权限
         user.setAuthorities(authorities);
-        return null;
+        return user;
     }
 }
